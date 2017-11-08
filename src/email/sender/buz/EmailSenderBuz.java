@@ -41,8 +41,6 @@ public class EmailSenderBuz {
                 templateDic.setVariable("FULLNAME", ticket.fullname);
                 templateDic.setVariable("CODE", ticket.code);
 
-                templateDic.showSection("ALERT_TRANS_SUCCESS");
-
                 ticket.content = template.renderToString(templateDic);
 
                 if (AppConfig.isDebug) {
