@@ -109,7 +109,7 @@ public class AppConfig {
                         ticket.fullname = data;
                         break;
                     case 1:
-                        ticket.email = data;
+                        ticket.email = data.toLowerCase();
                         if (!data.contains("@") || data.contains(" ")) {
                             throw new Exception(String.format("email invalid '%s'", data));
                         }
