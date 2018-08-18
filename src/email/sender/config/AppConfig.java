@@ -70,6 +70,7 @@ public class AppConfig {
         }
         config.mailSubject = ConfigReader.getParam(mailConfigName, "subject");
         config.mailEnvironment = ConfigReader.getParam(mailConfigName, "environment");
+        config.mailImage = ConfigReader.getParam(mailConfigName, "image");
 
         logger.info(" + [mailConfigEntity] " + mailConfigName + " = " + gson.toJson(config));
         logger.info("########################## loadMailConfig #################");
@@ -80,9 +81,11 @@ public class AppConfig {
         logger.info("########################## loadTicketConfig ###############");
         ticketConfig.filename = ConfigReader.getParam("ticket", "filename");
         ticketConfig.template = ConfigReader.getParam("ticket", "template");
+        ticketConfig.delayMilisec = Integer.parseInt(ConfigReader.getParam("ticket", "delayMilisec"));
 
         logger.info(String.format(" + [loadTicketConfig] fileName: %s", ticketConfig.filename));
         logger.info(String.format(" + [loadTicketConfig] template: %s", ticketConfig.template));
+        logger.info(String.format(" + [loadTicketConfig] delayMilisec: %s", ticketConfig.delayMilisec));
 
         loadTicketCode();
 
@@ -109,9 +112,9 @@ public class AppConfig {
                         ticket.fullname = data;
                         break;
                     case 1:
-                        ticket.email = data.toLowerCase();
-                        if (!data.contains("@") || data.contains(" ")) {
-                            throw new Exception(String.format("email invalid '%s'", data));
+                        ticket.email = data.toLowerCase().trim();
+                        if (!ticket.email.contains("@") || ticket.email.contains(" ")) {
+                            throw new Exception(String.format("email invalid '%s'", ticket.email));
                         }
                         ticket.emailAddress[0] = new InternetAddress(data);
                         break;
@@ -137,7 +140,7 @@ public class AppConfig {
 //            System.out.println(gson.toJson(ticket));
         }
 
-        System.out.println("count=" + ticketConfig.ticketCodes.size());
+        System.out.println("count ticket = " + ticketConfig.ticketCodes.size());
         logger.info("########################## loadTicketCode ################");
     }
 

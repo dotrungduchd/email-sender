@@ -21,5 +21,6 @@ public class MailConfigEntity {
     public String mailSubject = "";
     public String mailContentType = "text/html; charset=utf-8";
     public String mailEnvironment = "";
+    public String mailImage = "";
 
 }

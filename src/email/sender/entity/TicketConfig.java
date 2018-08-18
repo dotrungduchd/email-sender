@@ -16,6 +16,7 @@ public class TicketConfig {
 
     public String filename = "";
     public String template = "";
+    public int delayMilisec = 0;
 
     public List<TicketCode> ticketCodes = new ArrayList<>();
 }
