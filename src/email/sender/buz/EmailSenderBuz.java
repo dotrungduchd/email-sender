@@ -54,6 +54,7 @@ public class EmailSenderBuz {
                     }
                 }
 
+                logger.info("sending mail count = " + count);
                 count++;
             }
 
